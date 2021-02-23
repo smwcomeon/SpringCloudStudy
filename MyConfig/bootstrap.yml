@@ -1,0 +1,26 @@
+忽略网络接口
+有时，忽略某些命名网络接口是有用的，因此可以将其从服务发现注册中排除（例如，在Docker容器中运行）。可以设置正则表达式的列表，这将导致所需的网络接口被忽略。以下配置将忽略“docker0”接口和以“veth”开头的所有接口。
+
+application.yml
+spring:
+  cloud:
+    inetutils:
+      ignoredInterfaces:
+        - docker0
+        - veth.*
+您还可以强制使用正则表达式列表中指定的网络地址：
+
+application.yml
+spring:
+  cloud:
+    inetutils:
+      preferredNetworks:
+        - 192.168
+        - 10.0
+您也可以强制仅使用站点本地地址。有关更多详细信息，请参阅Inet4Address.html.isSiteLocalAddress（））是什么是站点本地地址。
+
+application.yml
+spring:
+  cloud:
+    inetutils:
+      useOnlySiteLocalInterfaces: true
